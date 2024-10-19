@@ -18,5 +18,11 @@ public class AlumnoServiceImpl implements AlumnoService {
 	public List<Alumno> getAll() {
 		return repository.findAll();
 	}
+	
+    @Override
+    public Alumno save(Alumno alumno) {
+        return repository.save(alumno); // Guardar el alumno
+    }
 
 }
+

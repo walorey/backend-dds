@@ -7,5 +7,7 @@ import com.example.demo.entity.Alumno;
 public interface AlumnoService {
 
 	List<Alumno> getAll();
+	
+	Alumno save(Alumno alumno); // Método para guardar un alumno
 
 }
