@@ -10,6 +10,8 @@ public interface AlumnoService {
 	
 	Alumno save(Alumno alumno); // Método para guardar un alumno
 	
-	 Alumno updateAlumno(Alumno alumno); // Método para actualizar
+	Alumno updateAlumno(Alumno alumno); // Método para actualizar
+	
+	void deleteAlumno(Long id);
 
 }

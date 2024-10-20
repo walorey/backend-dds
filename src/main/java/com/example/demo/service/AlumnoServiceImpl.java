@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 
 import com.example.demo.entity.Alumno;
-import com.example.demo.repository.AlumnoRepository;
+import com.example.demo.repository.AlumnoRepository; // Importa el repositorio
+import com.example.demo.entity.Alumno;
+import jakarta.transaction.Transactional;
 
 @Service
 public class AlumnoServiceImpl implements AlumnoService {
@@ -40,6 +42,18 @@ public class AlumnoServiceImpl implements AlumnoService {
         public ResourceNotFoundException(String message) {
             super(message);
         }
+    }
+    
+    @Transactional
+    @Override
+    public void deleteAlumno(Long id) {
+        // Primero elimina las relaciones en la tabla curso_alumno si es necesario
+        Alumno alumno = repository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con ID: " + id));
+
+        alumno.getCursos().forEach(curso -> curso.getAlumnos().remove(alumno)); // Romper relaciones sin borrar el curso
+
+        repository.deleteById(id); // Elimina el alumno
     }
 
 }

@@ -95,6 +95,13 @@ public class Curso {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
+    public List<Alumno> getAlumnos() { // Método getter para alumnos
+        return alumnos;
+    }
+
+    public void setAlumnos(List<Alumno> alumnos) { // Método setter para alumnos
+        this.alumnos = alumnos;
+    }
 }
 
 //un humilde comentarioo
