@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.example.demo.entity.Alumno;
 import com.example.demo.service.AlumnoService;
@@ -42,5 +43,17 @@ public class AlumnoController {
     @ResponseStatus(HttpStatus.NO_CONTENT) // Devuelve 204 No Content si se elimina correctamente
     public void deleteAlumno(@PathVariable Long id) {
         service.deleteAlumno(id);
+    }
+    
+    // Método para obtener un alumno por su ID
+    @GetMapping("/alumnos/{id}")
+    public ResponseEntity<Alumno> getAlumnoById(@PathVariable Long id) {
+    	Alumno alumno = service.getAlumnoById(id);
+
+        if (alumno != null) {
+            return ResponseEntity.ok(alumno);
+        } else {
+            return ResponseEntity.notFound().build(); // Retorna 404 si el alumno no se encuentra
+        }
     }
 }

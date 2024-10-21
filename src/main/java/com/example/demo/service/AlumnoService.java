@@ -13,5 +13,7 @@ public interface AlumnoService {
 	Alumno updateAlumno(Alumno alumno); // Método para actualizar
 	
 	void deleteAlumno(Long id);
+	
+	Alumno getAlumnoById(Long id);
 
 }

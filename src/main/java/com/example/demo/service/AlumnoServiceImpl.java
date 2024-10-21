@@ -55,6 +55,10 @@ public class AlumnoServiceImpl implements AlumnoService {
 
         repository.deleteById(id); // Elimina el alumno
     }
-
+    // Implementación del método para obtener un alumno por ID
+    @Override
+    public Alumno getAlumnoById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
 }
 
