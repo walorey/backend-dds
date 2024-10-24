@@ -17,6 +17,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "curso")
 public class Curso {
+
     @Id
     private Long id;
 
@@ -43,7 +44,7 @@ public class Curso {
         joinColumns = @JoinColumn(name = "cursoId"),
         inverseJoinColumns = @JoinColumn(name = "alumnoId")
     )
-    @JsonManagedReference // Añadir esta anotación
+    @JsonManagedReference // Esta anotación gestiona la serialización en la relación bidireccional
     private List<Alumno> alumnos;
 
     // Getters y setters
@@ -54,14 +55,6 @@ public class Curso {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Tema getTema() {
-        return tema;
-    }
-
-    public void setTema(Tema tema) {
-        this.tema = tema;
     }
 
     public Date getFechaInicio() {
@@ -80,6 +73,14 @@ public class Curso {
         this.fechaFin = fechaFin;
     }
 
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
     public Docente getDocente() {
         return docente;
     }
@@ -88,21 +89,19 @@ public class Curso {
         this.docente = docente;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public Tema getTema() {
+        return tema;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public void setTema(Tema tema) {
+        this.tema = tema;
     }
-    public List<Alumno> getAlumnos() { // Método getter para alumnos
+
+    public List<Alumno> getAlumnos() {
         return alumnos;
     }
 
-    public void setAlumnos(List<Alumno> alumnos) { // Método setter para alumnos
+    public void setAlumnos(List<Alumno> alumnos) {
         this.alumnos = alumnos;
     }
 }
-
-//un humilde comentarioo
-
