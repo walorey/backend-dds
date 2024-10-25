@@ -26,9 +26,9 @@ public class Alumno {
 	@Column(name = "fecha_nacimiento")
 	private Date fechaNacimiento;
     
-	@ManyToMany(mappedBy = "alumnos")
+	/*@ManyToMany(mappedBy = "alumnos")
 	@JsonBackReference
-	private List<Curso> cursos;
+	private List<Curso> cursos;*/
 
     
 	public Alumno() {}
@@ -57,11 +57,11 @@ public class Alumno {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
-    public List<Curso> getCursos() { // Método getter para cursos
+   /* public List<Curso> getCursos() { // Método getter para cursos
         return cursos;
     }
 
     public void setCursos(List<Curso> cursos) { // Método setter para cursos
         this.cursos = cursos;
-    }
+    }*/
 }

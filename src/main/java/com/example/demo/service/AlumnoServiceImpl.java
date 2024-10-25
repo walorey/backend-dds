@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
@@ -23,10 +24,13 @@ public class AlumnoServiceImpl implements AlumnoService {
 		return repository.findAll();
 	}
 	
-    @Override
-    public Alumno save(Alumno alumno) {
-        return repository.save(alumno); // Guardar el alumno
-    }
+	@Override
+	public Alumno save(Alumno alumno) {
+	    if (alumno.getId() != null && repository.existsById(alumno.getId())) {
+	        throw new DataIntegrityViolationException("El alumno con ID " + alumno.getId() + " ya existe.");
+	    }
+	    return repository.save(alumno);
+	}
     
     @Override
     public Alumno updateAlumno(Alumno alumno) {
@@ -47,13 +51,10 @@ public class AlumnoServiceImpl implements AlumnoService {
     @Transactional
     @Override
     public void deleteAlumno(Long id) {
-        // Primero elimina las relaciones en la tabla curso_alumno si es necesario
-        Alumno alumno = repository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Alumno no encontrado con ID: " + id));
-
-        alumno.getCursos().forEach(curso -> curso.getAlumnos().remove(alumno)); // Romper relaciones sin borrar el curso
-
-        repository.deleteById(id); // Elimina el alumno
+        if(!repository.existsById(id)){
+        	throw new ResourceNotFoundException("Alumno no encontrado con id"+id);
+        }
+        repository.deleteById(id);
     }
     // Implementación del método para obtener un alumno por ID
     @Override
