@@ -2,49 +2,41 @@ package com.example.demo.entity;
 
 import java.util.Date;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "curso")
 public class Curso {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Ajuste para AUTO_INCREMENT
     private Long id;
 
-    @Column(name = "fechaInicio")
+    @Column(name = "fecha_inicio")  // Ajuste para coincidir con la base de datos
     private Date fechaInicio;
 
-    @Column(name = "fechaFin")
+    @Column(name = "fecha_fin")  // Ajuste para coincidir con la base de datos
     private Date fechaFin;
 
     @Column(name = "precio")
     private Double precio;
 
     @ManyToOne
-    @JoinColumn(name = "docenteId") // Clave foránea a la tabla docente
+    @JoinColumn(name = "docente_id") // Clave foránea a la tabla docente
     private Docente docente;
 
     @ManyToOne
-    @JoinColumn(name = "temaId")
+    @JoinColumn(name = "tema_id") // Clave foránea a la tabla tema
     private Tema tema;
 
     @ManyToMany
     @JoinTable(
         name = "curso_alumno",
-        joinColumns = @JoinColumn(name = "cursoId"),
-        inverseJoinColumns = @JoinColumn(name = "alumnoId")
+        joinColumns = @JoinColumn(name = "curso_id"),
+        inverseJoinColumns = @JoinColumn(name = "alumno_id")
     )
-    @JsonManagedReference // Esta anotación gestiona la serialización en la relación bidireccional
+    @JsonManagedReference
     private List<Alumno> alumnos;
 
     // Getters y setters

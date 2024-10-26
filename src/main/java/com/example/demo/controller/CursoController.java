@@ -5,11 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;  // Importa todas las anotaciones REST
+
+import com.example.demo.entity.Alumno;
 import com.example.demo.entity.Curso;
 import com.example.demo.service.CursoService;
 
 @RestController
-@RequestMapping("/cursos")
 public class CursoController {
 
     @Autowired
@@ -23,8 +24,10 @@ public class CursoController {
     }
 
     // POST para crear un curso
-    @RequestMapping(value = "/cursos", method = RequestMethod.POST, produces = "application/json")
-    public Curso addCurso(@RequestBody Curso curso) {
-    	return cursoService.crearCurso(curso);
+    @PostMapping(value = "/cursos", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Curso> crearCurso(@RequestBody Curso curso) {
+        Curso nuevoCurso = cursoService.crearCurso(curso);
+        return new ResponseEntity<>(nuevoCurso, HttpStatus.CREATED);
     }
+
 }
