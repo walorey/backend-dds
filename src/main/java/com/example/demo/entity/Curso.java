@@ -36,7 +36,7 @@ public class Curso {
         joinColumns = @JoinColumn(name = "curso_id"),
         inverseJoinColumns = @JoinColumn(name = "alumno_id")
     )
-    @JsonManagedReference
+    //@JsonManagedReference // Esta anotación gestiona la serialización en la relación bidireccional
     private List<Alumno> alumnos;
 
     // Getters y setters

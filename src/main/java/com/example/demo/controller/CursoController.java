@@ -13,21 +13,21 @@ import com.example.demo.service.CursoService;
 @RestController
 public class CursoController {
 
-    @Autowired
-    private CursoService cursoService;
+   @Autowired
+   private CursoService cursoService;
 
-    // GET para obtener todos los cursos
-    @GetMapping
-    public ResponseEntity<List<Curso>> getAllCursos() {
-        List<Curso> cursos = cursoService.getAll();
-        return new ResponseEntity<>(cursos, HttpStatus.OK);
-    }
+   // GET para obtener todos los cursos
+   @GetMapping("/cursos")
+   public ResponseEntity<List<Curso>> getAllCursos() {
+       List<Curso> cursos = cursoService.getAll();
+       return new ResponseEntity<>(cursos, HttpStatus.OK);
+   }
 
-    // POST para crear un curso
-    @PostMapping(value = "/cursos", consumes = "application/json", produces = "application/json")
+    @PostMapping("/cursos")
     public ResponseEntity<Curso> crearCurso(@RequestBody Curso curso) {
         Curso nuevoCurso = cursoService.crearCurso(curso);
         return new ResponseEntity<>(nuevoCurso, HttpStatus.CREATED);
     }
+
 
 }
