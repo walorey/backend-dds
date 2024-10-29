@@ -7,6 +7,8 @@ import com.example.demo.entity.Docente;
 public interface DocenteService {
 
 	List<Docente> getAll();
+	
+	Docente save(Docente docente); // Método para guardar un docente
 
 }
 
