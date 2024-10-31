@@ -28,6 +28,27 @@ public class CursoController {
         Curso nuevoCurso = cursoService.crearCurso(curso);
         return new ResponseEntity<>(nuevoCurso, HttpStatus.CREATED);
     }
+    
+    
 
+    // Endpoint para actualizar un curso
+    @PutMapping("/cursos/{id}")
+    public Curso updateCurso(@PathVariable Long id, @RequestBody Curso curso) {
+        curso.setId(id); // Asegura que el ID en el objeto coincide con el ID de la URL
+        return cursoService.updateCurso(curso);
+    }
+    
+    
+    // Método para obtener un curso por su ID
+    @GetMapping("/cursos/{id}")
+    public ResponseEntity<Curso> getCursoById(@PathVariable Long id) {
+    	Curso curso = cursoService.getCursoById(id);
+
+        if (curso != null) {
+            return ResponseEntity.ok(curso);
+        } else {
+            return ResponseEntity.notFound().build(); // Retorna 404 si el curso no se encuentra
+        }
+    }
 
 }
