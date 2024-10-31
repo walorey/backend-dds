@@ -16,6 +16,9 @@ public interface CursoService {
  // Método para actualizar
     Curso updateCurso(Curso curso); 
     
+ //Metodo para borrar
+    void deleteCurso(Long id);
+    
     //Obtener curso por ID
     Curso getCursoById(Long id);
 }

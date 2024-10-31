@@ -38,6 +38,12 @@ public class CursoController {
         return cursoService.updateCurso(curso);
     }
     
+    //metodo para borrar curso
+    @DeleteMapping("/cursos/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT) // Devuelve 204 No Content si se elimina correctamente
+    public void deleteCurso(@PathVariable Long id) {
+        cursoService.deleteCurso(id);
+    }
     
     // Método para obtener un curso por su ID
     @GetMapping("/cursos/{id}")

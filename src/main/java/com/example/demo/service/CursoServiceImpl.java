@@ -11,6 +11,8 @@ import com.example.demo.entity.Curso;
 import com.example.demo.repository.CursoRepository;
 import com.example.demo.service.AlumnoServiceImpl.ResourceNotFoundException;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class CursoServiceImpl implements CursoService {
 
@@ -41,6 +43,15 @@ public class CursoServiceImpl implements CursoService {
         public ResourceNotFoundException(String message) {
             super(message);
         }
+    }
+    
+    @Transactional
+    @Override
+    public void deleteCurso(Long id) {
+        if(!cursoRepository.existsById(id)){
+        	throw new ResourceNotFoundException("Cursoo no encontrado con id"+id);
+        }
+        cursoRepository.deleteById(id);
     }
     
     // Implementación del método para obtener un curso por ID
