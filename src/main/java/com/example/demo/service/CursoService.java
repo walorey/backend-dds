@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.example.demo.entity.Alumno;
@@ -21,4 +22,7 @@ public interface CursoService {
     
     //Obtener curso por ID
     Curso getCursoById(Long id);
+    
+    // Método para obtener cursos que finalizan en una fecha específica
+    List<Curso> findCursosByFechaFin(Date fechaFin);
 }

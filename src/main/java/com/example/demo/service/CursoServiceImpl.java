@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -58,5 +59,11 @@ public class CursoServiceImpl implements CursoService {
     @Override
     public Curso getCursoById(Long id) {
         return cursoRepository.findById(id).orElse(null);
+    }
+    
+    //Para saber que curso finaliza un dia especifico
+    @Override
+    public List<Curso> findCursosByFechaFin(Date fechaFin) {
+        return cursoRepository.findByFechaFin(fechaFin);
     }
 }
