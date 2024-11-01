@@ -10,5 +10,11 @@ public interface TemaService {
 	List<Tema> getAll();
 	
 	Tema save(Tema tema); // Método para guardar un tema
+	
+	Tema updateTema(Tema tema); // Método para actualizar
+	
+	void deleteTema(Long id); //Metodo para borrar
+	
+	Tema getTemaById(Long id); //Muestra un alumno por ID
 
 }
