@@ -69,4 +69,11 @@ public class CursoController {
 	        List<Curso> cursos = cursoService.findCursosByFechaFin(fechaFin);
 	        return new ResponseEntity<>(cursos, HttpStatus.OK);
 	    }
+	    
+	    // Endpoint para obtener los cursos vigentes de un docente junto con los alumnos
+	    @GetMapping("/{docenteId}/cursos-vigentes")
+	    public ResponseEntity<List<Curso>> getCursosVigentesByDocente(@PathVariable Long docenteId) {
+	        List<Curso> cursos = cursoService.getCursosVigentesByDocenteId(docenteId);
+	        return new ResponseEntity<>(cursos, HttpStatus.OK);
+	    }
 }

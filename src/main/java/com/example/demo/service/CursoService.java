@@ -25,4 +25,7 @@ public interface CursoService {
     
     // Método para obtener cursos que finalizan en una fecha específica
     List<Curso> findCursosByFechaFin(Date fechaFin);
+    
+    //Metodo para obtener cursos vigentes
+    List<Curso> getCursosVigentesByDocenteId(Long docenteId);
 }

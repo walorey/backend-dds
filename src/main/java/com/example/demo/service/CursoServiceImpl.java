@@ -66,4 +66,9 @@ public class CursoServiceImpl implements CursoService {
     public List<Curso> findCursosByFechaFin(Date fechaFin) {
         return cursoRepository.findByFechaFin(fechaFin);
     }
+    //obtener cursos vigentes
+    @Override
+    public List<Curso> getCursosVigentesByDocenteId(Long docenteId) {
+        return cursoRepository.findVigentesByDocenteId(docenteId);
+    }
 }
