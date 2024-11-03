@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;  // Importa todas las anotacio
 import com.example.demo.entity.Alumno;
 import com.example.demo.entity.Curso;
 import com.example.demo.service.CursoService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin(origins = "http://localhost:4200") // Permite solicitudes de este origen
 
 @RestController
 public class CursoController {

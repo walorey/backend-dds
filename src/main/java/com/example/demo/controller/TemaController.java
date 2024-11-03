@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.Alumno;
 import com.example.demo.entity.Tema;
 import com.example.demo.service.TemaService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+@CrossOrigin(origins = "http://localhost:4200") // Permite solicitudes de este origen
 
 @RestController
 public class TemaController {
