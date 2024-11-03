@@ -16,6 +16,9 @@ import org.springframework.http.ResponseEntity;
 
 import com.example.demo.entity.Alumno;
 import com.example.demo.service.AlumnoService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin(origins = "http://localhost:4200") // Permite solicitudes de este origen
 
 @RestController
 public class AlumnoController {
